@@ -3,7 +3,7 @@
 > A 3D interactive biomechanical landing page for Techfest IIT Bombay.
 
 ## 🚀 Live Demo
-[View Deployment](https://neural-core.netlify.app)
+[View Deployment](https://techfest-neural-core.netlify.app/)
 
 ## 📖 About
 **NEURAL CORE** is an immersive web experience built for Techfest IIT Bombay. It features a central 3D interactive biomechanical core that reacts to mouse movement and scroll position, surrounded by floating event modules. The design merges organic and mechanical elements using a cyberpunk/cyborg aesthetic.
