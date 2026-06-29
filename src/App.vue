@@ -9,6 +9,9 @@ import FeaturesSection from './components/FeaturesSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import ContactSection from './components/ContactSection.vue'
 
+const cursorX = ref(0)
+const cursorY = ref(0)
+
 gsap.registerPlugin(ScrollTrigger)
 
 const containerRef = ref(null)
@@ -18,12 +21,18 @@ let coreGroup, modulesGroup
 let mouseX = 0, mouseY = 0
 let targetRotationX = 0, targetRotationY = 0
 
+const handleMouseMove = (e) => {
+  cursorX.value = e.clientX
+  cursorY.value = e.clientY
+}
+
 onMounted(() => {
   initThreeJS()
   createScene()
   setupScrollAnimations()
   setupMouseInteraction()
   animate()
+  document.addEventListener('mousemove', handleMouseMove)
 })
 
 const initThreeJS = () => {
@@ -266,11 +275,14 @@ onUnmounted(() => {
   cancelAnimationFrame(animationId)
   window.removeEventListener('resize', onWindowResize)
   ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+  document.removeEventListener('mousemove', handleMouseMove)
 })
 </script>
 
 <template>
   <div ref="containerRef" class="relative">
+    <div class="cyber-cursor" :style="{ left: cursorX + 'px', top: cursorY + 'px' }"></div>
+    <div class="cyber-cursor-dot" :style="{ left: cursorX + 'px', top: cursorY + 'px' }"></div>
     <!-- 3D Canvas - Fixed Background -->
     <canvas ref="canvasRef" class="fixed inset-0 z-0"></canvas>
     
